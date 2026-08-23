@@ -1,7 +1,7 @@
 name: elisha_gaming
-description: "Eli Sha Gaming Mobile App"
+description: Eli Sha Gaming Community & Video Feed App
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -9,7 +9,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.8.6
   cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
 
 flutter:
   uses-material-design: true
