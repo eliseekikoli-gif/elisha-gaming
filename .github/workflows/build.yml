@@ -1,4 +1,4 @@
-name: Build Eli Sha Gaming APK
+name: Build Eli Sha Gaming Bundle & APK
 
 on:
   push:
@@ -8,31 +8,42 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: '17'
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: '3.22.2'
 
-      - name: Create Android Scaffolding
-        run: flutter create --platforms=android --org com.elisha.gaming .
+    - name: Create Project Scaffolding
+      run: |
+        flutter create --org com.elishagaming --project-name elisha_gaming .
+        flutter pub get
 
-      - name: Install dependencies
-        run: flutter pub get
+    - name: Build Android App Bundle (.aab for Play Store)
+      run: flutter build appbundle --release
 
-      - name: Build APK (Fat APK with universal symbols)
-        run: flutter build apk --release --no-shrink
+    - name: Build Universal APK (.apk for testing)
+      run: flutter build apk --release
 
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: EliShaGaming-Release-APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+    - name: Upload AAB (Play Store)
+      uses: actions/upload-artifact@v4
+      with:
+        name: EliShaGaming-PlayStore-AAB
+        path: build/app/outputs/bundle/release/app-release.aab
+
+    - name: Upload APK (Direct Install)
+      uses: actions/upload-artifact@v4
+      with:
+        name: EliShaGaming-Release-APK
+        path: build/app/outputs/flutter-apk/app-release.apk
