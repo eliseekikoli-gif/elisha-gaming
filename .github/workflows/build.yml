@@ -22,14 +22,14 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create native Android scaffolding
-        run: flutter create --platforms=android .
+      - name: Create Android Scaffolding
+        run: flutter create --platforms=android --org com.elisha.gaming .
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build APK
-        run: flutter build apk --release
+      - name: Build APK (Fat APK with universal symbols)
+        run: flutter build apk --release --no-shrink
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
