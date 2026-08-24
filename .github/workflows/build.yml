@@ -25,25 +25,22 @@ jobs:
         channel: 'stable'
         flutter-version: '3.22.2'
 
-    - name: Create Project Scaffolding
+    - name: Generate Custom Icons & Build
       run: |
         flutter create --org com.elishagaming --project-name elisha_gaming .
         flutter pub get
-
-    - name: Build Android App Bundle (.aab for Play Store)
-      run: flutter build appbundle --release
-
-    - name: Build Universal APK (.apk for testing)
-      run: flutter build apk --release
-
-    - name: Upload AAB (Play Store)
-      uses: actions/upload-artifact@v4
-      with:
-        name: EliShaGaming-PlayStore-AAB
-        path: build/app/outputs/bundle/release/app-release.aab
+        dart run flutter_launcher_icons
+        flutter build apk --release
+        flutter build appbundle --release
 
     - name: Upload APK (Direct Install)
       uses: actions/upload-artifact@v4
       with:
         name: EliShaGaming-Release-APK
         path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Upload AAB (Play Store)
+      uses: actions/upload-artifact@v4
+      with:
+        name: EliShaGaming-PlayStore-AAB
+        path: build/app/outputs/bundle/release/app-release.aab
