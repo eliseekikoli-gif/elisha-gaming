@@ -8,10 +8,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Alarm
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Videocam
-import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,25 +31,25 @@ class MainActivity : ComponentActivity() {
                             NavigationBarItem(
                                 selected = false,
                                 onClick = { navController.navigate("home") },
-                                icon = { Icon(Icons.Default.Home, "Accueil") },
+                                icon = { Icon(Icons.Default.Home, contentDescription = "Accueil") },
                                 label = { Text("Accueil") }
                             )
                             NavigationBarItem(
                                 selected = false,
                                 onClick = { navController.navigate("whatsapp") },
-                                icon = { Icon(Icons.Default.Whatsapp, "Statuts") },
+                                icon = { Icon(Icons.Default.Share, contentDescription = "Statuts") },
                                 label = { Text("Statuts") }
                             )
                             NavigationBarItem(
                                 selected = false,
                                 onClick = { navController.navigate("recorder") },
-                                icon = { Icon(Icons.Default.Videocam, "Capture") },
+                                icon = { Icon(Icons.Default.Videocam, contentDescription = "Capture") },
                                 label = { Text("Écran") }
                             )
                             NavigationBarItem(
                                 selected = false,
                                 onClick = { navController.navigate("alarms") },
-                                icon = { Icon(Icons.Default.Alarm, "Alarmes") },
+                                icon = { Icon(Icons.Default.Alarm, contentDescription = "Alarmes") },
                                 label = { Text("Rappels") }
                             )
                         }

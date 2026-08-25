@@ -5,7 +5,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
+import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,7 +48,7 @@ fun HomeScreen(navController: NavController) {
                 ToolCard(
                     title = "Statuts WhatsApp",
                     description = "Consultez et enregistrez les photos et vidéos des statuts accessibles.",
-                    icon = Icons.Default.Whatsapp,
+                    icon = Icons.Default.Share,
                     accentColor = Color(0xFF25D366),
                     onClick = { navController.navigate("whatsapp") }
                 )
@@ -105,7 +109,7 @@ fun ToolCard(
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(description, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
             }
-            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = Color.Gray)
+            Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription = null, tint = Color.Gray)
         }
     }
 }
