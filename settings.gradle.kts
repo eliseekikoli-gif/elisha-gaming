@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Eli Sha Tools"
+rootProject.name = "EliShaTools"
 include(":app")
