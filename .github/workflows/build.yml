@@ -1,8 +1,8 @@
-name: Build Eli Sha Tools APK
+name: Build En-Speaking Bundle & APK
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -10,26 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Setup Java 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
 
-      - name: Install & Setup Gradle Wrapper
-        run: |
-          sudo apt-get update && sudo apt-get install -y gradle
-          gradle wrapper --gradle-version 8.7
-          chmod +x gradlew
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: '3.22.2'
 
-      - name: Build APK Debug
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+    - name: Scaffolding En-Speaking & Generate Launcher Icons
+      run: |
+        flutter create --org com.enspeaking --project-name enspeaking .
+        flutter pub get
+        dart run flutter_launcher_icons
+        flutter build apk --release
+        flutter build appbundle --release
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: EliShaTools-Debug-APK
-          path: app/build/outputs/apk/debug/*.apk
+    - name: Upload En-Speaking APK (Installation Directe)
+      uses: actions/upload-artifact@v4
+      with:
+        name: EnSpeaking-Release-APK
+        path: build/app/outputs/flutter-apk/app-release.apk
+
+    - name: Upload En-Speaking AAB (Google Play Store)
+      uses: actions/upload-artifact@v4
+      with:
+        name: EnSpeaking-PlayStore-AAB
+        path: build/app/outputs/bundle/release/app-release.aab

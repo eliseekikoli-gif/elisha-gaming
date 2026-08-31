@@ -1,7 +1,7 @@
-name: elisha_gaming
-description: Complete Eli Sha Gaming Platform
+name: enspeaking
+description: Plateforme d'apprentissage et de pratique de l'anglais En-Speaking
 publish_to: 'none'
-version: 1.1.0+3
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -9,7 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  video_player: ^2.8.6
   cupertino_icons: ^1.0.6
 
 dev_dependencies:
@@ -22,7 +21,7 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/images/logo.png"
-  adaptive_icon_background: "#090A0F"
+  adaptive_icon_background: "#0F172A"
   adaptive_icon_foreground: "assets/images/logo.png"
 
 flutter:
