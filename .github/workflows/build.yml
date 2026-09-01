@@ -25,12 +25,10 @@ jobs:
         channel: 'stable'
         flutter-version: '3.22.2'
 
-    - name: Build Clean Release APK
+    - name: Clean Build & Compile APK
       run: |
-        rm -rf android
-        flutter create --org com.enspeaking --project-name enspeaking --platforms=android .
         flutter pub get
-        flutter build apk --release
+        flutter build apk --release --no-tree-shake-icons
 
     - name: Upload En-Speaking APK
       uses: actions/upload-artifact@v4
