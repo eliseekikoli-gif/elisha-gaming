@@ -25,9 +25,10 @@ jobs:
         channel: 'stable'
         flutter-version: '3.22.2'
 
-    - name: Build Release APK
+    - name: Clean and Build Release APK
       run: |
         flutter create --org com.enspeaking --project-name enspeaking --platforms=android .
+        flutter clean
         flutter pub get
         flutter build apk --release
 
